@@ -1,0 +1,13 @@
+html , body{
+    background-color: rgb(209, 183, 235);
+}
+
+ng-select .ng-select-container {
+  background-color: rgb(205, 252, 155) !important;
+  color: black;
+}
+
+ng-select .ng-dropdown-panel {
+  background-color: rgb(171, 255, 167) !important;
+  color: rgb(0, 0, 0);
+}
