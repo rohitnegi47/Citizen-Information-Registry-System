@@ -1,0 +1,53 @@
+<form #userForm="ngForm" (ngSubmit)="saveForm(userForm)">
+  <h2>User Registration</h2>
+
+  <label>Name:</label>
+  <input type="text" name="Name" [(ngModel)]="formData.Name" required pattern="[a-zA-Z ]*" #name="ngModel"/>
+  <div *ngIf="name.invalid && name.touched" style="color:red">Name is required and must contain only letters.</div>
+  <br /><br />
+
+  <label>Email:</label>
+  <input type="email" name="Email" [(ngModel)]="formData.Email" required email #email="ngModel"/>
+  <div *ngIf="email.invalid && email.touched" style="color:red">Please enter a valid email address.</div>
+  <br /><br />
+
+  <label>DOB:</label>
+  <input type="date" name="DOB" [(ngModel)]="formData.DOB" required #dob="ngModel"/> <!-- fixed casing -->
+  <div *ngIf="dob.invalid && dob.touched" style="color:red">Date of Birth is required.</div>
+  <br /><br />
+
+  <label>Gender:</label>
+  <input type="radio" name="Gender" value="male" [(ngModel)]="formData.Gender" required #gender="ngModel"/> Male
+  <input type="radio" name="Gender" value="Female" [(ngModel)]="formData.Gender" required/> Female
+  <input type="radio" name="Gender" value="Other" [(ngModel)]="formData.Gender" required/> Other
+  <div *ngIf="gender.invalid && gender.touched" style="color:red">Please select a gender.</div>
+  <br /><br />
+
+  <label>SELECT STATE :</label>
+  <ng-select style="background-color: rgb(255, 248, 44); width: 23%;" [items]="states" bindLabel="StateName"
+   bindValue="StateId" [(ngModel)]="formData.StateId" name="StateId" required 
+    #state="ngModel" (change)="onStateChange()" placeholder="selected state : "></ng-select>
+  <div *ngIf="state.invalid && state.touched" >State is required.</div>
+  <br /><br />
+ 
+  <label>SELECT DISTRICT:</label>
+  <ng-select class="state-dropdown"
+ style="background-color: rgb(255, 247, 0); width:23%;" [items]="districts" bindLabel="DistrictName" bindValue="DistrictId" 
+  [(ngModel)]="formData.DistrictId" name="DistrictId" required #district="ngModel" 
+  placeholder="selected district : " (change)="onDistrictChange()"></ng-select>
+  <div *ngIf="district.invalid && district.touched" style="color:red">District is required.</div>
+  <br /><br />
+
+  <label>SELECT CITY:</label>
+  <ng-select style="background-color: rgb(255, 248, 44); width:23%;" [items]="cities" bindLabel="CityName" bindValue="CityId" [(ngModel)]="formData.CityId" name="CityId" required #city="ngModel" 
+  placeholder="selected city :" (change)="onCityChange(formData.CityId)"></ng-select>
+  <div *ngIf="city.invalid && city.touched" style="color:red">City is required.</div>
+  <br /><br />
+
+  <label>SELECT PINCODE:</label>
+  <ng-select style=" width:23%;" [items]="pincodes" bindLabel="Pincode" bindValue="Pincode" [(ngModel)]="formData.Pincode" name="Pincode" required #pincode="ngModel" 
+  placeholder="selected pincode : "></ng-select>
+  <br /><br />
+
+  <button type="submit" [disabled]="userForm.invalid">Save</button>
+</form>

@@ -1,0 +1,32 @@
+<!-- src/app/table/table.component.html -->
+<table border="1" width="100%" cellpadding="8" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>DOB</th>
+      <th>Gender</th>
+      <th>StateName</th>
+      <th>DistrictName</th>
+      <th>CityName</th>
+      <th>Pincode</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of userList">
+      <td>{{ user.Name }}</td>
+      <td>{{ user.Email }}</td>
+      <td>{{ user.DOB ? (user.DOB | date:'dd-MM-yyyy') : (user.Dob | date:'dd-MM-yyyy') }}</td>
+      <td>{{ user.Gender }}</td>
+      <td>{{ user.StateName }}</td>
+      <td>{{ user.DistrictName }}</td>
+      <td>{{ user.CityName }}</td>
+      <td>{{ user.Pincode }}</td>
+      <td>
+        <button (click)="updateUser(user.UserId)">Update</button>
+        <button (click)="deleteUser(user.UserId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
